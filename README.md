@@ -75,7 +75,7 @@ The basics command to deploy on the server are listed below (We are using the st
 composer install # if any depencies were added
 php bin/console cache:clear -e prod # you may need to run this as root
 chmod -R 775 var/ # you may need to run this as root
-chown -R allechant:www-data var/ # you may need to run this as root
+chown -R user:www-data var/ # you may need to run this as root
 php bin/console doctrine:schema:update --dump-sql
 php bin/console doctrine:schema:update --force
 ```
