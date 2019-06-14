@@ -37,7 +37,7 @@ Once the project is available locally, install the project dependencies
 Next, put your database credentials in .env file (located in the root of the project)
 
 ```
-DB_NAME=allechant
+DB_NAME=amheredb
 DB_USER=root
 DB_PASS=${DB_USER}:root
 DATABASE_URL=mysql://${DB_PASS}@127.0.0.1:3306/${DB_NAME}
