@@ -41,7 +41,6 @@ DB_NAME=amheredb
 DB_USER=root
 DB_PASS=${DB_USER}:root
 DATABASE_URL=mysql://${DB_PASS}@127.0.0.1:3306/${DB_NAME}
-HOST_NAME=http://staging.allechant.sandboxify.com # this is the website url
 ```
 
 Create the database
@@ -55,8 +54,6 @@ Create the database tables
 Before running the command above, you might want to run `php bin/console doctrine:schema:update --dump-sql` to see what's happening first
 
 ## Deploying the project
-
-To deploy the project, all codes must be pushed into the develop/release/staging environment.
 
 For the javascript file, in your local machine 
 
