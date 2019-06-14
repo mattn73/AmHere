@@ -5,15 +5,15 @@
 [Known issues](#known-issues)<br />
 [Final notes](#final-notes)<br />
 
-# Allechant
+# AMHERE
 
-Application developed with Symfony 4.2.8
+Application developed with Symfony 4.3
 
 ## Prerequisites
 
 Make sure your have the following installed
 
-- PHP 7.2
+- PHP 7.3
 - MySQL 5.7
 - NodeJS
 - gulp
