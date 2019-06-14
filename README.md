@@ -28,7 +28,7 @@ This is a step by step of how to get the project running locally
 
 Begin by cloning the project
 
-    git clone git@code.esokia.io:Bonengoo/Allechant.git
+    git clone git@github.com:mattn73/AmHere.git
 
 Once the project is available locally, install the project dependencies
 
