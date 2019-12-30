@@ -21,10 +21,8 @@ $container->set('view', function(ContainerInterface $container) use ($loader){
     return new Twig($loader);
 });
 
-$app->get('/hello/{name}', function ($request, $response, $args) {
-    return $this->get('view')->render($response, 'hello.twig', [
-        'name' => $args['name']
-    ]);
-});
+$app->get('/', function ($request, $response, $args) {
+    return $this->get('view')->render($response, 'hello.twig');
+})->setName('home.page');
 
 $app->run();
