@@ -22,7 +22,7 @@ $container->set('view', function(ContainerInterface $container) use ($loader){
 });
 
 $app->get('/', function ($request, $response, $args) {
-    return $this->get('view')->render($response, 'hello.twig');
+    return $this->get('view')->render($response, 'default.twig');
 })->setName('home.page');
 
 $app->run();
