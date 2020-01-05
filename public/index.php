@@ -21,6 +21,8 @@ $container->set('view', function(ContainerInterface $container) use ($loader){
     return new Twig($loader);
 });
 
+require __DIR__.'/../config/bootstrap.php';
+
 $app->get('/', function ($request, $response, $args) {
     return $this->get('view')->render($response, 'default.twig');
 })->setName('home.page');

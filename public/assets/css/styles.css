@@ -582,6 +582,9 @@ input[type='checkbox'] {
 }
 /* end of fade animation for image slider - magnific popup */
 
+.hidden {
+	display: none;
+}
 
 /*************************/
 /*     02. Preloader     */
@@ -2001,7 +2004,7 @@ a:hover.back-to-top {
 	/* Contact */
 	.form-2 .list-unstyled li {
 		display: inline-block;
-		margin-right: 1rem;
+		margin-right: 0.5rem;
 	}
 
 	.form-2 .list-unstyled .address {

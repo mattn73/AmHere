@@ -5,11 +5,13 @@ namespace App\Action;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 
-final class HomeAction
+final class EmailAction
 {
     public function __invoke(ServerRequest $request, Response $response)
     {
-        return $request['view']->render($response, 'default.twig');
 
+        $response->getBody()->write('Hello, World!');
+
+        return $response;
     }
 }
