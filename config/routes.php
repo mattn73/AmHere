@@ -6,5 +6,5 @@ use Slim\Http\ServerRequest;
 use App\Action\EmailAction;
 
 return function (App $app) {
-    $app->get('/send-email', EmailAction::class);
+    $app->post('/send-email', EmailAction::class);
 };

@@ -1,6 +1,7 @@
 {
     "require": {
         "php-di/php-di": "^6.0",
+        "phpmailer/phpmailer": "^6.1",
         "selective/config": "^0.1.1",
         "slim/http": "^0.8.0",
         "slim/psr7": "^0.6.0",
