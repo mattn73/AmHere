@@ -9,14 +9,14 @@ use Slim\Http\ServerRequest;
 
 final class EmailAction
 {
-    public function __invoke(ServerRequest $request, Response $response)
+    public static function index(ServerRequest $request, Response $response, $container)
     {
         $params = $request->getParams();
 
         $params['subject'] = $params['type'] == 'contact-me' ? 'Contact Me' : 'Message';
-        $params['body']    = $this->generateBody($params['message'] , $params['type']);
+        $params['body']    = self::generateBody($params['message'] , $params['type'], $container);
 
-        if($this->sendMail($params)) {
+        if(self::sendMail($params)) {
             $data = ['feedback' => 'success'];
         } else {
             $data = ['feedback' => 'failed'];
@@ -25,7 +25,7 @@ final class EmailAction
         return $response->withJson($data);
     }
 
-    protected function sendMail($params)
+    protected static function sendMail($params)
     {
         /**
          * @var PHPMailer $mailer
@@ -48,14 +48,14 @@ final class EmailAction
         }
     }
 
-    /**
-     * @param $message
-     * @param $type
-     * @return String $body
-     */
-    private function generateBody($message, $type)
-    {
 
+    private static function generateBody($message, $type, $container)
+    {
+        if ($type == 'contact-me' ) {
+            $body = $container->get('view')->fetch('message.twig', ['name' => 'contact']);
+        } else {
+            $body = $container->get('view')->fetch('message.twig', ['name' => 'message']);
+        }
 
 //todo: Build Email Body
         return $body;

@@ -380,7 +380,7 @@
         e.preventDefault();
         var form = $(this)[0];
         var data = new FormData(form);
-        data.append("type", "contact-Me");
+        data.append("type", "contact-me");
         sendEmail(data);
 	});
 
