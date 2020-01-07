@@ -14,9 +14,9 @@ final class EmailAction
         $params = $request->getParams();
 
         $params['subject'] = $params['type'] == 'contact-me' ? 'Contact Me' : 'Message';
-        $params['body']    = self::generateBody($params['message'] , $params['type'], $container);
+        $params['body']    = self::generateBody($params, $params['type'], $container);
 
-        if(self::sendMail($params)) {
+        if (self::sendMail($params)) {
             $data = ['feedback' => 'success'];
         } else {
             $data = ['feedback' => 'failed'];
@@ -32,29 +32,40 @@ final class EmailAction
          */
         $mailer = Configuration::getMailConfiguration();
 
-        if(!$mailer) {
+        if (!$mailer) {
             return false;
         }
 
         $mailer->setFrom($params['email'], $params['name']);
-        $mailer->Subject = 'AM HERE WEB Contact -  ' .$params['subject'];
+        $mailer->Subject = 'AM HERE WEB Contact -  ' . $params['subject'];
         $mailer->msgHTML($params['body']);
         $mailer->AltBody = 'HTML messaging not supported';
 
-        if(!$mailer->send()){
+        if (!$mailer->send()) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
 
-    private static function generateBody($message, $type, $container)
+    private static function generateBody($params, $type, $container)
     {
-        if ($type == 'contact-me' ) {
-            $body = $container->get('view')->fetch('message.twig', ['name' => 'contact']);
+        if ($type == 'contact-me') {
+            $body = $container->get('view')->fetch('contact.twig',
+                [
+                    'name'      => $params['name'],
+                    'telephone' => $params['phone'],
+                    'email'     => $params['email'],
+                    'looking'   => $params['looking'],
+                ]);
         } else {
-            $body = $container->get('view')->fetch('message.twig', ['name' => 'message']);
+            $body = $container->get('view')->fetch('message.twig',
+                [
+                    'name'    => $params['name'],
+                    'email'   => $params['email'],
+                    'message' => $params['body'],
+                ]);
         }
 
 //todo: Build Email Body
