@@ -13,13 +13,16 @@ final class EmailAction
     {
         $params = $request->getParams();
 
+        $params['subject'] = $params['type'] == 'contact-me' ? 'Contact Me' : 'Message';
+        $params['body']    = $this->generateBody($params['message'] , $params['type']);
+
         if($this->sendMail($params)) {
-            $data = ['sent' => 'success'];
+            $data = ['feedback' => 'success'];
         } else {
-            $data = ['sent' => 'failed'];
+            $data = ['feedback' => 'failed'];
         }
 
-        return $response->withJson($data);;
+        return $response->withJson($data);
     }
 
     protected function sendMail($params)
@@ -43,6 +46,18 @@ final class EmailAction
         }else{
             return true;
         }
+    }
 
+    /**
+     * @param $message
+     * @param $type
+     * @return String $body
+     */
+    private function generateBody($message, $type)
+    {
+
+
+//todo: Build Email Body
+        return $body;
     }
 }

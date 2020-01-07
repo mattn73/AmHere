@@ -359,4 +359,38 @@
 		$(this).blur();
 	});
 
+	function sendEmail(data){
+        $.ajax({
+           type: "POST",
+           url: 'send-email',
+           processData: false,
+           contentType: false,
+           data: data, // serializes the form's elements.
+           success: function(data)
+               {
+                   $.alert({
+                       title: 'Success!',
+                       content: 'Message Sent',
+                   });
+               }
+       });
+	}
+
+	$("#callMeForm").submit(function(e) {
+        e.preventDefault();
+        var form = $(this)[0];
+        var data = new FormData(form);
+        data.append("type", "contact-Me");
+        sendEmail(data);
+	});
+
+    $("#contactForm").submit(function(e) {
+        e.preventDefault();
+        var form = $(this)[0];
+        var data = new FormData(form);
+
+        data.append("type", "message");
+        sendEmail(data);
+    });
+
 })(jQuery);
